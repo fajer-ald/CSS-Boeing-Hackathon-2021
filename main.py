@@ -50,6 +50,19 @@ def main_code():
     component_5=0.009*math.pow(temperature,2)
 
     realistic_speed_of_sound=(1449.05+component_1) - component_2 + component_3 + (1.333 - component_4) + component_5*(salinity - 35)
+    def receiver_noise(ship_Range,t):
+        spreading_loss=20*math.log(ship_Range)
+        attenuation=ship_Range * 0.5
+        total_transmission_loss=spreading_loss+attenuation
+        array_gain=10
+        snr_ratio=spreading_loss-(2*total_transmission_loss)+63+array_gain
+        bandwidth=1/t
+
+
+
+    """
+    Message transcription into list of frequencies
+    """
 
     letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
     numbers = ['0','1','2','3','4','5','6','7','8','9']
@@ -65,5 +78,43 @@ def main_code():
         sys.exit(1)
     for i in range(len(msg)):
         transcript.append(code.get(msg[i]))
-    return transcript,ship.x,ship.y,ship.z,submarine.x,submarine.y,submarine.z, time_taken, realistic_speed_of_sound
+    return transcript,ship.x,ship.y,ship.z,submarine.x,submarine.y,submarine.z, time_taken
 		
+def error_statistics():
+     """
+    Calculation equation for the speed of sound in sea-water as a function of temperature, salinity and depth 
+    is given by Coppens equation 1981.
+    Range of validity: temperature 0 to 35 °C, salinity 0 to 45 parts per thousand, depth 0 to 4000 m
+
+    """
+    temperature=random.randrange(0,35)
+    salinity=random.randrange(0,45)
+    depth=random.randrange(0,4000)
+    component_1=45.7*temperature
+    component_2=5.21*math.pow(temperature,2)
+    component_3=0.23*math.pow(temperature,3)
+    component_4=0.126*temperature
+    component_5=0.009*math.pow(temperature,2)
+
+    realistic_speed_of_sound=(1449.05+component_1) - component_2 + component_3 + (1.333 - component_4) + component_5*(salinity - 35)
+
+
+    """"
+    SNR -> signal to noise ratio
+    Transmission Loss
+    Bandwith
+
+    """
+
+    
+    
+    def receiver_noise(ship_Range,t):
+        spreading_loss=20*math.log(ship_Range)
+        attenuation=ship_Range * 0.5
+        total_transmission_loss=spreading_loss+attenuation
+        array_gain=10
+        snr_ratio=spreading_loss-(2*total_transmission_loss)+63+array_gain
+        bandwidth=1/t
+
+    return realistic_speed_of_sound, snr_ratio, total_transmission_loss,bandwidth
+

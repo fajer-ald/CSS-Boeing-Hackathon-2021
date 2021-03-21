@@ -7,7 +7,9 @@ import PySimpleGUI as sg
 
 data=main.main_code()
 
+
 sg.theme('Reddit')
+error_data=main.error_statistics()
 
 freqs=list(range(10,46))
 counts=[]
