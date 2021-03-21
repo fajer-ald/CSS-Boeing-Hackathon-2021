@@ -1,6 +1,7 @@
 import random
 import sys
-import math
+import math.pow
+import math.sqrt
 
 class Vessel:
     def __init__(self):
