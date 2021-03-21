@@ -49,13 +49,7 @@ def main_code():
     component_4=0.126*temperature
     component_5=0.009*math.pow(temperature,2)
 
-    realistic_speed_of_sound=(1449.05+component_1) - component_2 + component_3 + (1.333 - component_4) + component_5*(salinity - 35)
-
-
-
-    """
-    Message transcription into list of frequencies
-    """
+    realistic_speed_of_sound=(1449.05+component_1) - component_2 + component_3 + (1.333 - component_4) + component_5*(salinity - 35)
 
     letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
     numbers = ['0','1','2','3','4','5','6','7','8','9']
