@@ -3,21 +3,40 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 import time
 import main
-from tqdm.auto import tqdm
+import PySimpleGUI as sg
 
 data=main.main_code()
+
+sg.theme('Reddit')
 
 freqs=list(range(10,46))
 counts=[]
 
-pbar1 = tqdm(total=len(data[0]), position=0, desc='Sending data')
-pbar2 = tqdm(total=len(data[0]), position=1, desc='Receiving data')
+pb1 = [
+    [sg.ProgressBar(len(data[0]), orientation='h', size=(51, 10), key='pb1')]
+]
+pb2 = [
+    [sg.ProgressBar(len(data[0]), orientation='h', size=(51, 10), key='pb2')]
+]
+layout = [
+    [sg.Frame('Send',layout=pb1)],
+    [sg.Frame('Receive',layout=pb2)]
+]
+window = sg.Window('Data Transfer', layout)
+progress_bar1 = window['pb1']
+progress_bar2 = window['pb2']
 
-for i in range(len(data[0])):
-    time.sleep(1-data[7])
-    pbar1.update(1)
-    time.sleep(data[7])
-    pbar2.update(1)
+while True:
+    print('lol')
+    window.read(timeout=10)
+    for i,item in enumerate(data[0]):
+        print(i)
+        time.sleep(0.1)
+        progress_bar1.UpdateBar(i+1)
+        time.sleep(data[7])
+        progress_bar2.UpdateBar(i+1)
+    break
+window.close()
 	
 for i in range(len(freqs)):
     counts.append(data[0].count(freqs[i]))
