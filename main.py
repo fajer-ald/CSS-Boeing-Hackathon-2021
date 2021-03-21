@@ -40,9 +40,9 @@ def main_code():
     Range of validity: temperature 0 to 35 °C, salinity 0 to 45 parts per thousand, depth 0 to 4000 m
 
     """
-    temperature=randrange(0,35)
-    salinity=randrange(0,45)
-    depth=randrange(0,4000)
+    temperature=random.randrange(0,35)
+    salinity=random.randrange(0,45)
+    depth=random.randrange(0,4000)
     component_1=45.7*temperature
     component_2=5.21*math.pow(temperature,2)
     component_3=0.23*math.pow(temperature,3)
