@@ -35,6 +35,20 @@ def main_code():
 
 
     """
+    Calculation equation for the speed of sound in sea-water as a function of temperature, salinity and depth 
+    is given by Coppens equation 1981.
+    Range of validity: temperature 0 to 35 °C, salinity 0 to 45 parts per thousand, depth 0 to 4000 m
+
+    """
+    temperature=randrange(0,35)
+    salinity=randrange(0,45)
+    depth=randrange(0,4000)
+
+    realistic_speed_of_sound=1449.05+(45.7*temperature) - (5.21*math.pow(temperature,2)) + (0.23*math.pow(temperature,3))+ (1.333 - (0.126*temperature) + (0.009*math.pow(temperature,2)*(salinity - 35))
+
+
+
+    """
     Message transcription into list of frequencies
     """
 
@@ -52,14 +66,5 @@ def main_code():
         sys.exit(1)
     for i in range(len(msg)):
         transcript.append(code.get(msg[i]))
-    return transcript,ship.x,ship.y,ship.z,submarine.x,submarine.y,submarine.z
+    return transcript,ship.x,ship.y,ship.z,submarine.x,submarine.y,submarine.z, realistic_speed_of_sound
 		
-"""
-class Loudspeaker:
-    def __init__(self):
-
-class Hydrophone:
-    def __init__(self,signal):
-        # signal is Boolean
-        self.signal=signal
-  """  
