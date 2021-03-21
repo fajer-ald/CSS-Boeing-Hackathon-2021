@@ -26,7 +26,7 @@ def main_code():
     Calculation of the time it takes for the message to be delivered
 
     """
-    arbitrary_underwater_speed_of_sound=1500
+    arbitrary_underwater_speed_of_sound=15
     x_component=ship.x-submarine.x
     y_component=ship.y-submarine.y
     z_component=ship.z-submarine.z
