@@ -7,6 +7,8 @@ from tqdm.auto import tqdm
 
 data=main.main_code()
 
+error_data=main.error_statistics()
+
 freqs=list(range(10,46))
 counts=[]
 
