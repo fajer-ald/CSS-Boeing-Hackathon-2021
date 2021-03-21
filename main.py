@@ -1,7 +1,6 @@
 import random
 import sys
-import math.pow
-import math.sqrt
+import math
 
 class Vessel:
     def __init__(self):
@@ -31,7 +30,7 @@ def main_code():
     x_component=ship.x-submarine.x
     y_component=ship.y-submarine.y
     z_component=ship.z-submarine.z
-    distance_between_two_vessels=sqrt(pow(x_component,2)+pow(y_component,2)+pow(z_component,2))
+    distance_between_two_vessels=math.sqrt(math.pow(x_component,2)+math.pow(y_component,2)+math.pow(z_component,2))
     time_taken=distance_between_two_vessels/arbitrary_underwater_speed_of_sound
 
 
