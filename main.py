@@ -1,5 +1,6 @@
 import random
 import sys
+import math
 
 class Vessel:
     def __init__(self):
@@ -12,11 +13,30 @@ class Vessel:
         self.z=random.randrange(-110,1)
 
 def main_code():
+    """
+    Random generation of Vessel Location
+    """
     ship = Vessel()
     ship.gen_coords()
     ship.z=0
     submarine = Vessel()
     submarine.gen_coords()
+
+    """
+    Calculation of the time it takes for the message to be delivered
+
+    """
+    arbitrary_underwater_speed_of_sound=1500
+    x_component=ship.x-submarine.x
+    y_component=ship.y-submarine.y
+    z_component=ship.z-submarine.z
+    distance_between_two_vessels=sqrt(pow(x_component,2)+pow(y_component,2)+pow(z_component,2))
+    time_taken=distance_between_two_vessels/arbitrary_underwater_speed_of_sound
+
+
+    """
+    Message transcription into list of frequencies
+    """
 
     letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
     numbers = ['0','1','2','3','4','5','6','7','8','9']
