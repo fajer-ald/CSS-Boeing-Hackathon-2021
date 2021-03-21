@@ -32,33 +32,7 @@ def main_code():
     z_component=ship.z-submarine.z
     distance_between_two_vessels=math.sqrt(math.pow(x_component,2)+math.pow(y_component,2)+math.pow(z_component,2))
     time_taken=distance_between_two_vessels/arbitrary_underwater_speed_of_sound
-
-
-    """
-    Calculation equation for the speed of sound in sea-water as a function of temperature, salinity and depth 
-    is given by Coppens equation 1981.
-    Range of validity: temperature 0 to 35 °C, salinity 0 to 45 parts per thousand, depth 0 to 4000 m
-
-    """
-    temperature=random.randrange(0,35)
-    salinity=random.randrange(0,45)
-    depth=random.randrange(0,4000)
-    component_1=45.7*temperature
-    component_2=5.21*math.pow(temperature,2)
-    component_3=0.23*math.pow(temperature,3)
-    component_4=0.126*temperature
-    component_5=0.009*math.pow(temperature,2)
-
-
-    realistic_speed_of_sound=(1449.05+component_1) - component_2 + component_3 + (1.333 - component_4) + component_5*(salinity - 35)
-    def receiver_noise(ship_Range,t):
-        spreading_loss=20*math.log(ship_Range)
-        attenuation=ship_Range * 0.5
-        total_transmission_loss=spreading_loss+attenuation
-        array_gain=10
-        snr_ratio=spreading_loss-(2*total_transmission_loss)+63+array_gain
-        bandwidth=1/t
-
+   
 
 
     """
