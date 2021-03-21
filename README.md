@@ -7,6 +7,7 @@ They constitute the basis of our inspiration for our implementation.
 
 An alphanumeric message is to be inputted by the user, which will in turn be frequency modulated, within the range of 10-47Hz. Each character or number is to be assigned to a specific frequency, the resulting message transmitted in the ocean would be looking something like the frequency modulated (FM) signal in the GIF below.
 
+
 ![Alt Text](https://upload.wikimedia.org/wikipedia/commons/a/a4/Amfm3-en-de.gif)
 
 The progress bar in the CLI indicates the progress of sending the message as well as receiving it by the other client, depending on the distance to the receiver.
@@ -22,88 +23,20 @@ Last but not least, an interactive 3D map is presented with the relative coordin
 2. **Environmental factors** Temperature, salinity, pressure(depth) all influence density which, in turn, influences the local speed of sound. This, however, does not present a hazard as these fluctuations are realtively small and will not influence the delay. Environmental noise, on the other hand, can pose a threat to the integrity of the signal, as can moving water streams. Packet loss due to these factors could not be measured using software the team had on board and required field testing, which is not possible in the scope of this project.
 
 
+Submarine Search Sonar: Signal-to-Noise Ratio
+Although the characteristics of submarine search sonars vary substantially for different systems, typical sizes of the terms in the sonar equation can be obtained by working through an example for a hypothetical mid-frequency sonar operating at 8,000 Hz. The active sonar equation is:
 
-import random
-import sys
-import math
-
-
-class Vessel:
-    def __init__(self):
-        self.x = 0
-        self.y = 0
-        self.z = 0
-
-    def gen_coords(self):
-        self.x = random.randrange(0, 101)
-        self.y = random.randrange(0, 101)
-        self.z = random.randrange(-110, 1)
-
-def receiver_noise(ship_Range,t):
-    spreading_loss=20*math.log(ship_Range)
-    attenuation=ship_Range*0.5
-    total_transmission_loss=spreading_loss+attenuation
-    array_gain=10
-    snr_ratio=spreading_loss-(2*total_transmission_loss)+63+array_gain
-    bandwidth=1/t
-    return snr_ratio, total_transmission_loss,bandwidth
-
-def main_code():
-    """
-    Random generation of Vessel Location
-    """
-    ship = Vessel()
-    ship.gen_coords()
-    ship.z = 0
-    submarine = Vessel()
-    submarine.gen_coords()
-
-    """
-    Calculation of the time it takes for the message to be delivered
-    """
-    arbitrary_underwater_speed_of_sound = 1500
-    x_component = ship.x - submarine.x
-    y_component = ship.y - submarine.y
-    z_component = ship.z - submarine.z
-    distance_between_two_vessels = math.sqrt(
-        math.pow(x_component, 2) + math.pow(y_component, 2) + math.pow(z_component, 2))
-    time_taken = distance_between_two_vessels / arbitrary_underwater_speed_of_sound
-
-    """
-    Calculation equation for the speed of sound in sea-water as a function of temperature, salinity and depth 
-    is given by Coppens equation 1981.
-    Range of validity: temperature 0 to 35 °C, salinity 0 to 45 parts per thousand, depth 0 to 4000 m
-    """
-    temperature = random.randrange(0, 35)
-    salinity = random.randrange(0, 45)
-    depth = random.randrange(0, 4000)
-    component_1 = 45.7 * temperature
-    component_2 = 5.21 * math.pow(temperature, 2)
-    component_3 = 0.23 * math.pow(temperature, 3)
-    component_4 = 0.126 * temperature
-    component_5 = 0.009 * math.pow(temperature, 2)
-
-    realistic_speed_of_sound = (1449.05 + component_1) - component_2 + component_3 + (
-                1.333 - component_4) + component_5 * (salinity - 35)
+snr_ratio=spreading_loss-(2*total_transmission_loss)+63+array_gain
 
 
+The transmission loss TL includes both sound spreading loss and attenuation. Sound spreading loss assuming spherical spreading for a range R of 10,000 m is:
 
-    """
-    Message transcription into list of frequencies
-    """
+Spreading loss (dB) = 20 log R
 
-    letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-    numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-    values = letters+ numbers
-    freq = list(range(10, 46))
-    code = dict(zip(values, freq))
-    transcript = []
+The attenuation due to sound absorption calculated using the absorption coefficient α (alpha) of about 0.5 dB/km at a frequency of 8,000 Hz is:
 
-    msg = input('Please enter your message: ')
-    msg = msg.lower()
-    if msg.isalnum() is False:
-        print('Message not alphanumeric, unable to send')
-    sys.exit(1)
-    for i in range(len(msg)):
-        transcript.append(code.get(msg[i]))
-    return transcript, ship.x, ship.y, ship.z, submarine.x, submarine.y, submarine.z, time_taken, realistic_speed_of_sound
+Attenuation (dB) = αR = (0.5 dB/km x 10 km)
+
+total_transmission_loss=spreading_loss+attenuation
+
+
