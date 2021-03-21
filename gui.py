@@ -9,7 +9,6 @@ data=main.main_code()
 
 
 sg.theme('Reddit')
-error_data=main.error_statistics()
 
 freqs=list(range(10,46))
 counts=[]
@@ -29,7 +28,6 @@ progress_bar1 = window['pb1']
 progress_bar2 = window['pb2']
 
 while True:
-    print('lol')
     window.read(timeout=10)
     for i,item in enumerate(data[0]):
         print(i)
