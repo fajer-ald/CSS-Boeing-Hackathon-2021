@@ -52,7 +52,7 @@ def main_code():
         sys.exit(1)
     for i in range(len(msg)):
         transcript.append(code.get(msg[i]))
-    return transcript,ship.x,ship.y,ship.z,submarine.x,submarine.y,submarine.z
+    return transcript,ship.x,ship.y,ship.z,submarine.x,submarine.y,submarine.z, time_taken
 		
 """
 class Loudspeaker:
