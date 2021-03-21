@@ -49,6 +49,7 @@ def main_code():
     component_4=0.126*temperature
     component_5=0.009*math.pow(temperature,2)
 
+
     realistic_speed_of_sound=(1449.05+component_1) - component_2 + component_3 + (1.333 - component_4) + component_5*(salinity - 35)
     def receiver_noise(ship_Range,t):
         spreading_loss=20*math.log(ship_Range)
@@ -105,10 +106,6 @@ def error_statistics():
     Bandwith
 
     """
-
-    
-    
-    def receiver_noise(ship_Range,t):
         spreading_loss=20*math.log(ship_Range)
         attenuation=ship_Range * 0.5
         total_transmission_loss=spreading_loss+attenuation
