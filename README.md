@@ -23,7 +23,8 @@ Last but not least, an interactive 3D map is presented with the relative coordin
 2. **Environmental factors** Temperature, salinity, pressure(depth) all influence density which, in turn, influences the local speed of sound. This, however, does not present a hazard as these fluctuations are realtively small and will not influence the delay. Environmental noise, on the other hand, can pose a threat to the integrity of the signal, as can moving water streams. Packet loss due to these factors could not be measured using software the team had on board and required field testing, which is not possible in the scope of this project.
 
 
-Submarine Search Sonar: Signal-to-Noise Ratio
+##Submarine Search Sonar: 
+Signal-to-Noise Ratio
 Although the characteristics of submarine search sonars vary substantially for different systems, typical sizes of the terms in the sonar equation can be obtained by working through an example for a hypothetical mid-frequency sonar operating at 8,000 Hz. The active sonar equation is:
 
 snr_ratio=spreading_loss-(2*total_transmission_loss)+63+array_gain
