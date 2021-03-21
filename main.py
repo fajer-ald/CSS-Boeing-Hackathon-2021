@@ -1,9 +1,6 @@
 
 
-def coordinates_generator():
-    x=list(range(0,101))
-    y=list(range(0,111))
-    z=list(range(0,101))
+
 
 
 # populating the dictionary for our code.
@@ -17,8 +14,16 @@ frequency_range = list(range(10,47))
 code = dict(zip(frequency_range, values))
 
 class Vessel:
-    def __init__(self):
+    def __init__(self, xcoordinate, ycoordinate, zcoordinate):
+        self.xcoordinate=xcoordinate
+        self.ycoordinate=ycoordinate
+        self.zcoordinate=zcoordinate
+    def coordinates_generator(self,xcoordinate,ycoordinate,zcoordinate):
+        x=list(range(0,101))
+        y=list(range(0,111))
+        z=list(range(0,101))
 
+"""
 class Loudspeaker:
     def __init__(self):
 
@@ -26,6 +31,7 @@ class Hydrophone:
     def __init__(self,signal):
         # signal is Boolean
         self.signal=signal
+  """  
     
-    
-
+surface_vessel=Vessel(randrange(),randrange(),100)
+submarine=Vessel(randrange(),randrange(),0)
