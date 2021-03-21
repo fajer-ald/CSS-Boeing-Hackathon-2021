@@ -14,9 +14,9 @@ pbar1 = tqdm(total=len(data[0]), position=0, desc='Sending data')
 pbar2 = tqdm(total=len(data[0]), position=1, desc='Receiving data')
 
 for i in range(len(data[0])):
-    time.sleep(0.5)
+    time.sleep(1-data[7])
     pbar1.update(1)
-    time.sleep(0.5)
+    time.sleep(data[7])
     pbar2.update(1)
 	
 for i in range(len(freqs)):
