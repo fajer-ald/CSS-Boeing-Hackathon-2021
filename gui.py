@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 import time
 import main
 from tqdm.auto import tqdm
@@ -21,10 +22,13 @@ for i in range(len(data[0])):
 for i in range(len(freqs)):
     counts.append(data[0].count(freqs[i]))
 	
-fig, ax=plt.subplots()
-freqs_g=ax.bar(freqs, counts, 0.8, color='blue')
-ax.set_xlabel('Frequency, Hz')
-ax.set_ylabel('Times transmitted')
+fig1, ax1=plt.subplots()
+freqs_g=ax1.bar(freqs, counts, 0.8, color='blue')
+ax1.set_xlabel('Frequency, Hz')
+ax1.set_ylabel('Times transmitted')
 plt.xlim([9, 36])
-ax.set_title('Frequency spectrum of the transmission')
+ax1.set_title('Frequency spectrum of the transmission')
+fig2 = plt.figure()
+ax2 = plt.axes(projection='3d')
+ax2.scatter([data[1],data[4]],[data[2],data[5]],[data[3],data[6]])
 plt.show()

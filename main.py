@@ -8,13 +8,13 @@ class Vessel:
         self.z=0
     def gen_coords(self):
         self.x=random.randrange(0,101)
-        self.y=random.randrange(0,111)
-        self.z=random.randrange(0,101)
+        self.y=random.randrange(0,101)
+        self.z=random.randrange(-110,1)
 
 def main_code():
     ship = Vessel()
     ship.gen_coords()
-    ship.y=0
+    ship.z=0
     submarine = Vessel()
     submarine.gen_coords()
 
