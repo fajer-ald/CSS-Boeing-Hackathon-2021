@@ -52,6 +52,26 @@ def main_code():
     realistic_speed_of_sound=(1449.05+component_1) - component_2 + component_3 + (1.333 - component_4) + component_5*(salinity - 35)
 
 
+    """"
+    SNR -> signal to noise ratio
+    Transmission Loss
+    Bandwith
+
+    """
+
+    
+    
+    
+    def receiver_noise(ship_Range,t):
+        spreading_loss=20*math.log(ship_Range)
+        attenuation=ship_Range * 0.5
+        total_transmission_loss=spreading_loss+attenuation
+        array_gain=10
+        snr_ratio=spreading_loss-(2*total_transmission_loss)+63+array_gain
+        bandwidth=1/t
+    return snr_ratio, total_transmission_loss,bandwidth
+
+
 
     """
     Message transcription into list of frequencies
