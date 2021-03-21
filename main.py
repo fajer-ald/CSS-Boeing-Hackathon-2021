@@ -43,8 +43,13 @@ def main_code():
     temperature=randrange(0,35)
     salinity=randrange(0,45)
     depth=randrange(0,4000)
+    component_1=45.7*temperature
+    component_2=5.21*math.pow(temperature,2)
+    component_3=0.23*math.pow(temperature,3)
+    component_4=0.126*temperature
+    component_5=0.009*math.pow(temperature,2)
 
-    realistic_speed_of_sound=1449.05+(45.7*temperature) - (5.21*math.pow(temperature,2)) + (0.23*math.pow(temperature,3))+ (1.333 - (0.126*temperature) + (0.009*math.pow(temperature,2)*(salinity - 35))
+    realistic_speed_of_sound=(1449.05+component_1) - component_2 + component_3 + (1.333 - component_4) + component_5*(salinity - 35))
 
 
 
